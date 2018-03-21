@@ -9,7 +9,7 @@ import android.widget.TextView
 /**
  * Created by Lai on 3/21/2018.
  */
-class AlbumAdapter(val albumlist: ArrayList<Album>) : RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
+class AlbumAdapter(val albumlist: ArrayList<AlbumDetails>) : RecyclerView.Adapter<AlbumAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_layout, parent, false)

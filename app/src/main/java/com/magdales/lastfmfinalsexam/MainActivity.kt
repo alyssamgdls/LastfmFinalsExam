@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         runOnUiThread {
             progressBar.visibility = View.GONE
             val gsonObj = GsonBuilder().create()
-            val album = gsonObj.fromJson(jsonObj, Album::class.java)
+            val album = gsonObj.fromJson(jsonObj, AlbumDetails::class.java)
 
             if (searchEntry == album.name) {
                 textView_name.text = album.name
@@ -82,14 +82,14 @@ class MainActivity : AppCompatActivity() {
                 progressBar.visibility = View.GONE
             }
 
-            val length = JSONObject(jsonObj).getJSONArray("album").length()
-            val albumlist = ArrayList<Album>()
+            val length = JSONObject(jsonObj).getJSONArray("results").length()
+            val albumlist = ArrayList<AlbumDetails>()
             var pos = 0
             for (i in 1..length) {
                 val albumName = JSONObject(jsonObj).getJSONArray("album").getJSONObject(pos).getString("name").toString()
                 val artistName = JSONObject(jsonObj).getJSONArray("album").getJSONObject(pos).getString("artist").toString()
                 val albumImage = JSONObject(jsonObj).getJSONArray("album").getJSONObject(pos).getJSONObject("image").getString("#text").toString()
-                albumlist.add(Album(albumName, artistName, albumImage))
+                albumlist.add(AlbumDetails(albumName, artistName, albumImage))
                 val adapter = AlbumAdapter(albumlist)
                 recyclerView.adapter = adapter
                 pos++
